@@ -6,6 +6,9 @@
   <title>Document</title>
 </head>
   <style>
+    body{
+      background: rgb(228, 221, 221);
+    }
     .section{
       display: flex;
       width: 100%;
@@ -17,6 +20,9 @@
     }
     .section .section-2{
       width: 50%;
+    }
+    .section .section-2 h4{
+      margin-left: 0.6rem;
     }
     #theTeam{
       display: flex;
@@ -54,28 +60,35 @@
     }
 
 
-    .add form{
+    .add .form{
       display: flex;
       flex-direction: column;
       width: 100%;
       gap: 23px;
       align-items: center;
     }
-    .add form input{
-      border: ;
+    .form-wrapper{
+      display: flex;
+      gap: 25px;
+    }
+    .add .form input{
+      border: none;
       outline: none;
       padding: 2px;
+      background-color: #ccc;
+      padding: 19px;
+      border-radius: 5px;
 
     }
-    .add form .form-1{
+    .add .form .form-1{
       display: flex;
       flex-direction: column;
-      background: red;
-
+      gap: 9px;
     }
-    .add form .form-2{
+    .add .form .form-2{
       display: flex;
       flex-direction: column;
+      gap: 9px;
     }
     .btn-container{
       display: flex;
@@ -102,12 +115,13 @@
     }
     .add-btn{
       background-color: blueviolet;
+      padding: 10px 30px;
     }
     
   </style>
 <body>
   <div class="add">
-    <form action="">
+    <div class="form">
       <div class="form-wrapper">
         <div class="form-1">
           <input type="text" placeholder="Enter your Fullname" id="name">
@@ -119,10 +133,8 @@
           <input type="tel" placeholder="Enter your Phone Number" id="tel"> 
         </div>
       </div>
-
-      
-      <button onclick="addNew()" class="btn add-btn">Add</button>
-    </form>
+      <button onclick="addNew()" class="btn add-btn" id="addbtn">Add</button>
+    </div>
   </div>
   
   <div class="section">
@@ -181,23 +193,27 @@
 */
 // time speed
     console.time("for_loop");
-    for(i=0; i<team.length; i++){
-      var id = team[i];
-       teamDetails += `<div class="profile-container" id="${team[i]}">
-      <img src="${team[i].img}" alt="${team[i].fullName} Image"> <br>
-      <div ="txt-info">
-        <strong>Full Name</strong> : <span class="info">${team[i].fullName}</span> <br>
-        <strong>Stack</strong> : <span class="info">${team[i].stack}</span> <br>
-        <strong>Location</strong> : <span class="info">${team[i].location}</span> <br>
-        <div class="btn-container">
-          <button class="btn del-btn" onclick="deleteMember(${[i]});">Delete</button>
-          <button class="btn edit-btn">Edit</button>
+    let showDetails = () =>{
+
+      for(i=0; i<team.length; i++){
+
+        teamDetails += `<div class="profile-container" id="${team[i]}">
+        <img src="${team[i].img}" alt="${team[i].fullName} Image"> <br>
+        <div ="txt-info">
+          <strong>Full Name</strong> : <span class="info">${team[i].fullName}</span> <br>
+          <strong>Stack</strong> : <span class="info">${team[i].stack}</span> <br>
+          <strong>Location</strong> : <span class="info">${team[i].location}</span> <br>
+          <div class="btn-container">
+            <button class="btn del-btn" onclick="deleteMember(${[i]});">Delete</button>
+            <button class="btn edit-btn">Edit</button>
+          </div>
         </div>
-      </div>
-      </div><hr>` 
+        </div><hr>` 
+      }
+        document.getElementById("theTeam").innerHTML = teamDetails;
+        // alert(JSON.stringify(team));
     }
-    document.getElementById("theTeam").innerHTML = teamDetails;
-    // alert(JSON.stringify(team));
+
 // time speed
     console.timeEnd("for_loop");
   
@@ -245,7 +261,9 @@
     /*EXERCISE*/
 
     // Function to add new user from input
-    let addNew = () => {
+
+  
+    document.getElementById("addbtn").addEventListener("click", addNew = () => {
           let newName = document.getElementById("name").value;
           let newStack = document.getElementById("stack").value;
           let newLocation = document.getElementById("location").value;
@@ -259,24 +277,33 @@
           }
 
           team.push(newUser);
+          showDetails();
           // alert(JSON.stringify(team));
-          teamDetails += `<div>
-            <strong>Company Name</strong> : ${newUser.fullName} <br>
-            <strong>Company Email</strong> : ${newUser.newStack} <br>
-            </div><hr>`  
-            document.getElementById("theTeam").innerHTML = teamDetails;    
-        };
+        //   newDetails = teamDetails
+        //   newDetails += `<div class="profile-container" id="${team[i]}">
+        //     <img src="${newUser}" alt="${newUser.fullName} Image"> <br>
+        //     <div ="txt-info">
+        //       <strong>Full Name</strong> : <span class="info">${newUser.fullName}</span> <br>
+        //       <strong>Stack</strong> : <span class="info">${newUser.stack}</span> <br>
+        //       <strong>Location</strong> : <span class="info">${newUser.location}</span> <br>
+        //       <div class="btn-container">
+        //         <button class="btn del-btn" onclick="deleteMember();">Delete</button>
+        //         <button class="btn edit-btn">Edit</button>
+        //       </div>
+        //     </div>
+        //     </div><hr>` 
+        //     document.getElementById("theTeam").innerHTML = newDetails;    
+         });
 
 
 
 
     function deleteMember(x){
       // alert("deleted")
-      alert(JSON.stringify(team));
+      // alert(JSON.stringify(team));
       team.splice(x,1)
     };
 
-    addNew();
 </script>
 </body>
 </html>
