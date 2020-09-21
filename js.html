@@ -195,22 +195,21 @@
     console.time("for_loop");
     
     for(i=0; i<team.length; i++){
-      var id = team[i];
-       teamDetails += `<div class="profile-container" id="${team[i]}">
+      // var id = ;
+       teamDetails += `<div class="profile-container" id="${i}">
       <img src="${team[i].img}" alt="${team[i].fullName} Image"> <br>
       <div ="txt-info">
         <strong>Full Name</strong> : <span class="info">${team[i].fullName}</span> <br>
         <strong>Stack</strong> : <span class="info">${team[i].stack}</span> <br>
         <strong>Location</strong> : <span class="info">${team[i].location}</span> <br>
         <div class="btn-container">
-          <button class="btn del-btn" onclick="deleteMember(${[i]});">Delete</button>
+          <button class="btn del-btn" onclick="deleteMember(${i});">Delete</button>
           <button class="btn edit-btn">Edit</button>
         </div>
       </div>
       </div><hr>` 
     }
     document.getElementById("theTeam").innerHTML = teamDetails;
-    // alert(JSON.stringify(team));
 // time speed
     console.timeEnd("for_loop");
   
@@ -273,31 +272,31 @@
           }
 
           team.push(newUser);
-          // alert(JSON.stringify(team));
-          newDetails = teamDetails
-          newDetails += `<div class="profile-container" id="${team[i]}">
+          teamDetails += `<div class="profile-container" id="${i}">
             <img src="${newUser}" alt="${newUser.fullName} Image"> <br>
             <div ="txt-info">
               <strong>Full Name</strong> : <span class="info">${newUser.fullName}</span> <br>
               <strong>Stack</strong> : <span class="info">${newUser.stack}</span> <br>
               <strong>Location</strong> : <span class="info">${newUser.location}</span> <br>
               <div class="btn-container">
-                <button class="btn del-btn" onclick="deleteMember();">Delete</button>
+                <button class="btn del-btn" onclick="deleteMember(${i});">Delete</button>
                 <button class="btn edit-btn">Edit</button>
               </div>
             </div>
             </div><hr>` 
-            document.getElementById("theTeam").innerHTML = newDetails;    
+            document.getElementById("theTeam").innerHTML = teamDetails;    
+            document.getElementById("addbtn").addEventListener("click", addNew) 
+
         };
-        document.getElementById("addbtn").addEventListener("click", addNew) 
 
 
 
 
     function deleteMember(x){
       // alert("deleted")
-      // alert(JSON.stringify(team));
-      team.splice(x,1)
+     del = document.getElementById(x);
+     team.splice(x,1)
+     del.remove()
     };
 
 </script>
