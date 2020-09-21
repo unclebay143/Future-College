@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+  <style>
+    .section{
+      display: flex;
+      width: 100%;
+      /* flex-direction: row-reverse; */
+    }
+    .section-1{
+      width: 50%;
+      margin-left: 80px;
+    }
+    .section .section-2{
+      width: 50%;
+    }
+    #theTeam{
+      display: flex;
+      gap: 12px;
+      width:10%;
+      flex-wrap: wrap;
+    }
+    #theTeam img{
+      height: 200px;
+      width: 200px;
+      display: block;
+      margin: 0 auto;
+    }
+    #clients{
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-container{
+      display: flex;
+      padding: 10px;
+      gap: 9px;
+      white-space: nowrap;
+      margin: 1.4px;
+      flex: 1 1 30%;
+    }
+    .profile-container .txt-info{
+      display: flex;
+      width: 10rem;
+      
+    }
+    .profile-container strong,
+    .profile-container span.info{
+      /* white-space: nowrap; */
+      line-height: 50px;
+    }
+
+
+    .add form{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 23px;
+      align-items: center;
+    }
+    .add form input{
+      border: ;
+      outline: none;
+      padding: 2px;
+
+    }
+    .add form .form-1{
+      display: flex;
+      flex-direction: column;
+      background: red;
+
+    }
+    .add form .form-2{
+      display: flex;
+      flex-direction: column;
+    }
+    .btn-container{
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn{
+      border: none;
+      outline: none;
+      padding: 9px 9px;
+      border-radius: 5px;
+      color: white;
+      background:greenyellow;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .del-btn{
+      background: rgb(219, 20, 20);
+    }
+    .edit-btn{
+      background: green;
+      padding: 10px 18px;
+    }
+    .add-btn{
+      background-color: blueviolet;
+    }
+    
+  </style>
+<body>
+  <div class="add">
+    <form action="">
+      <div class="form-wrapper">
+        <div class="form-1">
+          <input type="text" placeholder="Enter your Fullname" id="name">
+          <input type="text" placeholder="Enter your Stack" id="stack">
+        </div>
+  
+        <div class="form-2">
+          <input type="text" placeholder="Enter your Location" id="location">
+          <input type="tel" placeholder="Enter your Phone Number" id="tel"> 
+        </div>
+      </div>
+
+      
+      <button onclick="addNew()" class="btn add-btn">Add</button>
+    </form>
+  </div>
+  
+  <div class="section">
+    <div class="section-1">
+      <h4>FOR LET-OF EXAMPLE </h4>
+      <div class="" id="clients">
+      </div>
+    </div>
+    
+    <div class="section-2">
+      <h4>FOR LOOP EXAMPLE</h4>
+      <div class="" id="theTeam">
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let team = [
+      {
+        "fullName" : "Ayodele S. Adebayo",
+        "stack" : "Frontend",
+        "location" : "Abuja",
+        "img" : "1.jpg",
+        "phone" : "090827162355",
+      },
+      {
+        "fullName" : "Durojaye Toba",
+        "stack" : "Backend",
+        "location" : "Kwara",
+        "img" : "3.jpeg",
+        "phone" : "090827162355",
+      },
+      {
+        "fullName" : "Adedayo Steven Adeolu",
+        "stack" : "UI Design",
+        "location" : "Kwara",
+        "img" : "4.jpg",
+      }
+    ]
+
+
+    user = {
+      "fullName" : "Aremu Aishat",
+        "stack" : "Product Manager",
+        "location" : "Lagos",
+        "img" : "2.jpg",
+    }
+    team.push(user)
+
+    teamDetails = ''
+
+/*
+    FOR LOOP
+      - Faster
+*/
+// time speed
+    console.time("for_loop");
+    for(i=0; i<team.length; i++){
+      var id = team[i];
+       teamDetails += `<div class="profile-container" id="${team[i]}">
+      <img src="${team[i].img}" alt="${team[i].fullName} Image"> <br>
+      <div ="txt-info">
+        <strong>Full Name</strong> : <span class="info">${team[i].fullName}</span> <br>
+        <strong>Stack</strong> : <span class="info">${team[i].stack}</span> <br>
+        <strong>Location</strong> : <span class="info">${team[i].location}</span> <br>
+        <div class="btn-container">
+          <button class="btn del-btn" onclick="deleteMember(${[i]});">Delete</button>
+          <button class="btn edit-btn">Edit</button>
+        </div>
+      </div>
+      </div><hr>` 
+    }
+    document.getElementById("theTeam").innerHTML = teamDetails;
+    // alert(JSON.stringify(team));
+// time speed
+    console.timeEnd("for_loop");
+  
+  /*
+    
+    FOR (LET OF) METHOD
+      - readable
+      - goes through all element
+
+  */
+
+// check time
+    console.time("for_letOf");
+    let clients = [
+      {
+        "companyName": "Ksolution",
+        "companyEmail": "K@solution.com",
+        "companyLogo":  "company_1.jpg",
+      },
+      {
+        "companyName": "WhatsApp",
+        "companyEmail": "whatsapp@gmail.com",
+        "companyLogo":  "company_2.jpg",
+      },
+      {
+        "companyName": "Zoom",
+        "companyEmail": "tiktok@yahoo.com",
+        "companyLogo":  "company_3.png",
+      }
+    ]
+    for( let company_info of clients){
+      clients += `<div>
+      <img src="${company_info.companyLogo}" alt="${company_info.companyName} Image"> <br>
+      <strong>Company Name</strong> : ${company_info.companyName} <br>
+      <strong>Company Email</strong> : ${company_info.companyEmail} <br>
+      </div><hr>` 
+    }
+    document.getElementById("clients").innerHTML = clients;
+
+// time speed
+  console.timeEnd("for_letOf");
+
+
+
+    /*EXERCISE*/
+
+    // Function to add new user from input
+    let addNew = () => {
+          let newName = document.getElementById("name").value;
+          let newStack = document.getElementById("stack").value;
+          let newLocation = document.getElementById("location").value;
+          let newTel = document.getElementById("tel").value;
+
+          newUser = {
+            "fullName" : newName,
+            "stack" : newStack,
+            "location" : newLocation,
+            "phone" : newTel,
+          }
+
+          team.push(newUser);
+          // alert(JSON.stringify(team));
+          teamDetails += `<div>
+            <strong>Company Name</strong> : ${newUser.fullName} <br>
+            <strong>Company Email</strong> : ${newUser.newStack} <br>
+            </div><hr>`  
+            document.getElementById("theTeam").innerHTML = teamDetails;    
+        };
+
+
+
+
+    function deleteMember(x){
+      // alert("deleted")
+      alert(JSON.stringify(team));
+      team.splice(x,1)
+    };
+
+    addNew();
+</script>
+</body>
+</html>
