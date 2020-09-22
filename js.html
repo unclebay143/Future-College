@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/index.css">
   <title>WinnerSamTK School</title>
 </head>
 <body>
-  <div class="" id="students">
-
+  <div class="heading">Future College</div>
+  <div class="form">
+    <input type="text" placeholder="search" id="search" required>
+    <input type="text" placeholder="Enter Student Full Name" id="fullname" required>
+    <input type="text" placeholder="Add department" id="department" required>
+    <input type="text" placeholder="Add grade point" id="gradepoint" required>
+    <button id="add-btn" onclick="newStudentEntry();">Admit Student</button>
+  </div>
+  <div class="student-cards" id="students">
   </div>
   <script src="/assets/js/for-loop.js"></script>
 </body>

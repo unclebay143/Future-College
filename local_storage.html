@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="form">
+    <input type="text" id="firstName" placeholder="First Name">
+    <input type="text" id="middleName" placeholder="Middle">
+    <input type="text" id="lastName" placeholder="Last Name">
+    <input type="text" id="role" placeholder="Assign Role">
+    <input type="text" id="salary" placeholder="Set Salary">
+    <input type="text" id="department" placeholder="Post Department">
+    <button onclick="addEmployee()">Add</button>
+  </div>
+  <div id="company">
+
+  </div>
+  <script>
+    companyDb = JSON.parse(localStorage.getItem(("companyTable")))
+    if(companyDb == null)
+    {
+      companyDb = [];
+    }
+    let addEmployee = () =>
+    { // function to add new employee entry
+      newEmployee =
+        {
+          "img" : "img",
+          "firstName" : document.getElementById("firstName").value,
+          "middleName" : document.getElementById("middleName").value,
+          "lastName" : document.getElementById("lastName").value,
+          "role" : document.getElementById("role").value,
+          "salary" : document.getElementById("salary").value,
+          "department" : document.getElementById("department").value,
+        }
+        companyDb.push(newEmployee)
+        localStorage.setItem("companyTable", JSON.stringify(companyDb))
+        displayEmployee()
+    }
+
+    let displayEmployee = () =>
+    {
+      recordHolder = '';
+      for(i=0; i < companyDb.length; i++)
+      {
+        // if(companyDb[i] != null || companyDb[i] != undefined)
+        // {
+          recordHolder += `
+          <div class="employee" id="${i}">
+            <div class="employee_details ${companyDb[i].firstName}profile">
+              <img src='${companyDb[i].img}' alt="${companyDb[i].firstName}">
+            </div>
+            <div class="employee_details ${companyDb[i].fullName}profile">
+              <strong>Name</strong>: <span>${companyDb[i].FirstName}, ${companyDb[i].middleName} ${companyDb[i].lastName}</span>
+            </div>
+            <div class="employee_details ${companyDb[i].firstName}profile">
+              <strong>Role</strong>: <span>${companyDb[i].role}</span>
+            </div>
+            <div class="employee_details ${companyDb[i].fullName}profile">
+              <strong>Salary</strong>: <span>${companyDb[i].salary}</span>
+            </div>
+            <div class="employee_details ${companyDb[i].fullName}profile">
+              <strong>Department</strong>: <span>${companyDb[i].department}</span>
+            </div>
+            <div class="btn">
+              <button class="del-btn" onClick="delEmployee(${i})">Rusticate</button>
+              <button class="edit-btn" onClick="updateEmployeeRecord(${i})">Edit Record</button>
+            </div>
+          </div>
+          `
+        };
+      // };
+      document.getElementById("company").innerHTML = recordHolder;
+    };
+  displayEmployee()
+
+
+
+  // FUNCTION TO DELETE FROM LOCAL
+  let delEmployee = (employeeId) =>
+  {
+    companyDb.splice(employeeId, 1)
+    localStorage.setItem("companyTable", JSON.stringify(companyDb))
+    displayEmployee()
+  };
+
+
+  // FUNCTION TO EDIT EMPLOYEE RECORD
+  let updateEmployeeRecord = (employeeId =>
+{
+  let updateRecord = 
+    {
+      "firstName" : prompt("Update name:", companyDb[employeeId].name),
+      "middleName" : prompt("Update name:", companyDb[employeeId].name),
+      "lastName" : prompt("Update name:", companyDb[employeeId].name),
+      "department" : prompt("Change Department (takes effect after 2 working days):", studentDb[studentId].department),
+      "salary" : alert(`Change Grade Point ${companyDb[employeeId].gradePoint} : "Only HOD can perform this action`),
+      "img" : "assets/img/4.jpg",
+      "role" : prompt(`Current Admission Status: ${companyDb[employeeId].admissionStatus}
+        Type Status
+          1. Admitted
+          2. Graduate
+          3. Expel (Temporary)
+          4. Expel (Permanent)
+      `)
+    }
+    confirm(`
+    Confirm Changes
+    1.  ${companyDb[employeeId].name} to ${updateRecord.name}
+    2.  ${companyDb[employeeId].department} to ${updateRecord.department}
+    3.  ${companyDb[employeeId].admissionStatus} to ${updateRecord.admissionStatus}
+    `);
+    companyDb[employeeId] = updateRecord;
+    localStorage.setItem("companyTable", JSON.stringify(companyDb));
+    viewRecord();
+}
+  </script>
+</body>
+</html>
