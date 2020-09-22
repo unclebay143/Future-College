@@ -1,0 +1,117 @@
+body{
+  background: rgb(228, 221, 221);
+}
+.section{
+  display: flex;
+  width: 100%;
+  /* flex-direction: row-reverse; */
+}
+.section-1{
+  width: 50%;
+  margin-left: 80px;
+}
+.section-1 img{
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+}
+.section .section-2{
+  width: 50%;
+}
+.section .section-2 h4{
+  margin-left: 0.6rem;
+}
+#theTeam{
+  display: flex;
+  gap: 12px;
+  width:10%;
+  flex-wrap: wrap;
+}
+#theTeam img{
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+#clients{
+  display: flex;
+  flex-direction: column;
+}
+.profile-container{
+  display: flex;
+  padding: 10px;
+  gap: 9px;
+  white-space: nowrap;
+  margin: 1.4px;
+  flex: 1 1 30%;
+}
+.profile-container .txt-info{
+  display: flex;
+  width: 10rem;
+  
+}
+.profile-container strong,
+.profile-container span.info{
+  /* white-space: nowrap; */
+  line-height: 50px;
+}
+
+
+.add .form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 23px;
+  align-items: center;
+}
+.form-wrapper{
+  display: flex;
+  gap: 25px;
+}
+.add .form input{
+  border: none;
+  outline: none;
+  padding: 2px;
+  background-color: #ccc;
+  padding: 19px;
+  border-radius: 5px;
+
+}
+.add .form .form-1{
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.add .form .form-2{
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 10px;
+}
+.btn{
+  border: none;
+  outline: none;
+  padding: 9px 9px;
+  border-radius: 5px;
+  color: white;
+  background:greenyellow;
+  font-weight: 800;
+  cursor: pointer;
+}
+.del-btn{
+  background: rgb(219, 20, 20);
+}
+.edit-btn{
+  background: green;
+  padding: 10px 18px;
+}
+.add-btn{
+  background-color: blueviolet;
+  padding: 10px 30px;
+}

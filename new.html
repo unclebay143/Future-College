@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="members" id="member_panel">
+
+  </div>
+  <button onclick="addUser()">Add New</button>
+  <script>
+    let members = [ // Array of member objects
+      {
+        "name" : "Ayodele Samuel Adebayo",
+        "stack" : "Frontend",
+        "location" : "Abuja"
+      },
+      {
+        "name" : "Isaac Adeshewa Faith",
+        "stack" : "Product Manager",
+        "location" : "Kwara"
+      }
+    ];
+    let displayUsers = () =>{ // function that displays the updated objects in the array
+      tempHolder = ''
+      for(i=0; i < members.length; i++){
+        //temporary holder that shows the array objects
+        tempHolder += `
+          <div id="${i}">
+            <strong>Full Name: </strong> <span>${members[i].name}</span>
+            <strong>Stack: </strong> <span>${members[i].stack}</span>
+            <strong>Location: </strong> <span>${members[i].location}</span>            
+          </div>
+        `
+      }
+      members.push(tempHolder)
+      document.getElementById("member_panel").innerHTML = tempHolder;
+    };
+    displayUsers()
+
+    function addUser(){
+      let newUser =       {
+        "name" : "Isaac Adeshewa Faith",
+        "stack" : "Product Manager",
+        "location" : "Kwara"
+      }
+      members.push(newUser)
+      displayUsers()
+    }
+
+    // function edit(id)
+
+
+  </script>
+</body>
+</html>
