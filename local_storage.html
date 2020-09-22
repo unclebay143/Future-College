@@ -89,7 +89,7 @@
 
 
   // FUNCTION TO EDIT EMPLOYEE RECORD
-  let updateEmployeeRecord = (employeeId =>
+  let updateEmployeeRecord = (employeeId) =>
 {
   let updateRecord = 
     {
@@ -112,10 +112,10 @@
     1.  ${companyDb[employeeId].name} to ${updateRecord.name}
     2.  ${companyDb[employeeId].department} to ${updateRecord.department}
     3.  ${companyDb[employeeId].admissionStatus} to ${updateRecord.admissionStatus}
-    `);
+    `)
     companyDb[employeeId] = updateRecord;
-    localStorage.setItem("companyTable", JSON.stringify(companyDb));
-    viewRecord();
+    localStorage.setItem("companyTable", JSON.stringify(companyDb))
+    viewRecord()
 }
   </script>
 </body>

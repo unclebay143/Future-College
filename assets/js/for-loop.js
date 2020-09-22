@@ -126,6 +126,7 @@ let updateStudentRecord = (studentId) =>
       "name" : prompt("Update name:", studentDb[studentId].name),
       "department" : prompt("Change Department (takes effect after 2 working days):", studentDb[studentId].department),
       "gradePoint" : alert(`Change Grade Point ${studentDb[studentId].gradePoint} : "Only HOD can perform this action`),
+      "gradePoint" : studentDb[studentId].gradePoint,
       "img" : "assets/img/4.jpg",
       "admissionStatus" : prompt(`Current Admission Status: ${studentDb[studentId].admissionStatus}
         Type Status
