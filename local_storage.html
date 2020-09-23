@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- STEP ONE: Paste this code into the HEAD of your HTML document-->
+
+<head>
+  <script language="javascript" type="text/javascript">
+  function clock() {
+  var date = new Date()
+  var year = date.getYear()
+  var month = date.getMonth()
+  var day = date.getDate()
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
+  var months = new Array("", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
+  var monthname = months[month]
+  if (hour > 12) {hour = hour - 12}
+  if (minute < 10) {minute = "0" + minute}
+  if (second < 10) {second = "0" + second}
+  document.title = monthname + " " + day + ", " + year + " - " + hour + ":" + minute + ":" + second
+  setTimeout(clock, 1000)
+  }
+  </script>
+  </head>
+  
+  <!-- STEP TWO: Insert the onLoad event handler into your BODY tag  -->
+  
+  <body onLoad="clock()">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -38,10 +64,10 @@
         }
         companyDb.push(newEmployee)
         localStorage.setItem("companyTable", JSON.stringify(companyDb))
-        displayEmployee()
+        displayEmployeeRecord()
     }
 
-    let displayEmployee = () =>
+    let displayEmployeeRecord = () =>
     {
       recordHolder = '';
       for(i=0; i < companyDb.length; i++)
@@ -54,7 +80,7 @@
               <img src='${companyDb[i].img}' alt="${companyDb[i].firstName}">
             </div>
             <div class="employee_details ${companyDb[i].fullName}profile">
-              <strong>Name</strong>: <span>${companyDb[i].FirstName}, ${companyDb[i].middleName} ${companyDb[i].lastName}</span>
+              <strong>Name</strong>: <span>${companyDb[i].firstName}, ${companyDb[i].middleName} ${companyDb[i].lastName}</span>
             </div>
             <div class="employee_details ${companyDb[i].firstName}profile">
               <strong>Role</strong>: <span>${companyDb[i].role}</span>
@@ -75,7 +101,7 @@
       // };
       document.getElementById("company").innerHTML = recordHolder;
     };
-  displayEmployee()
+  displayEmployeeRecord()
 
 
 
@@ -84,7 +110,7 @@
   {
     companyDb.splice(employeeId, 1)
     localStorage.setItem("companyTable", JSON.stringify(companyDb))
-    displayEmployee()
+    displayEmployeeRecord()
   };
 
 
@@ -93,29 +119,23 @@
 {
   let updateRecord = 
     {
-      "firstName" : prompt("Update name:", companyDb[employeeId].name),
-      "middleName" : prompt("Update name:", companyDb[employeeId].name),
-      "lastName" : prompt("Update name:", companyDb[employeeId].name),
-      "department" : prompt("Change Department (takes effect after 2 working days):", studentDb[studentId].department),
-      "salary" : alert(`Change Grade Point ${companyDb[employeeId].gradePoint} : "Only HOD can perform this action`),
+      "firstName" : prompt("Update First Name:", companyDb[employeeId].firstName),
+      "middleName" : prompt("Update Middle Name:", companyDb[employeeId].middleName),
+      "lastName" : prompt("Update Last Name:", companyDb[employeeId].lastName),
+      "department" : prompt("Change Department (takes effect after 2 working days):", companyDb[employeeId].department),
+      "salary" : alert(`Change Salary ${companyDb[employeeId].salary} : "Only HOD can perform this action`),
       "img" : "assets/img/4.jpg",
-      "role" : prompt(`Current Admission Status: ${companyDb[employeeId].admissionStatus}
-        Type Status
-          1. Admitted
-          2. Graduate
-          3. Expel (Temporary)
-          4. Expel (Permanent)
-      `)
+      "role" : prompt(`Current Role: ${companyDb[employeeId].role}`)
     }
-    confirm(`
+    if(confirm(`
     Confirm Changes
-    1.  ${companyDb[employeeId].name} to ${updateRecord.name}
+    1.  ${companyDb[employeeId].firstName} to ${updateRecord.firstName}
     2.  ${companyDb[employeeId].department} to ${updateRecord.department}
-    3.  ${companyDb[employeeId].admissionStatus} to ${updateRecord.admissionStatus}
-    `)
+    3.  ${companyDb[employeeId].role} to ${updateRecord.role}
+    `))
     companyDb[employeeId] = updateRecord;
     localStorage.setItem("companyTable", JSON.stringify(companyDb))
-    viewRecord()
+    displayEmployeeRecord()
 }
   </script>
 </body>
